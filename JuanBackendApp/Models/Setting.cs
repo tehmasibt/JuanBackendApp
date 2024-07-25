@@ -10,3 +10,4 @@ namespace JuanBackendApp.Models
         public string Value { get; set; }
     }
 }
+
