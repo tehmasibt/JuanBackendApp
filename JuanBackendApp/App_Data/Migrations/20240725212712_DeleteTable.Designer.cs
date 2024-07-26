@@ -4,6 +4,7 @@ using JuanBackendApp.App_Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JuanBackendApp.App_Data.Migrations
 {
     [DbContext(typeof(JuanAppDbContext))]
-    partial class JuanAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240725212712_DeleteTable")]
+    partial class DeleteTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

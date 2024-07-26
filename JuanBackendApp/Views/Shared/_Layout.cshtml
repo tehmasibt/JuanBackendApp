@@ -1,4 +1,19 @@
-﻿<!DOCTYPE html>
+﻿@model HomeVM
+
+@{
+    var logoSetting = Model.Settings.FirstOrDefault(s => s.Key == "Logo" && !s.IsDeleted);
+    var addressSetting = Model.Settings.FirstOrDefault(a => a.Key == "Address" && !a.IsDeleted);
+    var emailSetting = Model.Settings.FirstOrDefault(e => e.Key == "Email" && !e.IsDeleted);
+    var phoneSetting = Model.Settings.FirstOrDefault(p => p.Key == "Phone" && !p.IsDeleted);
+    var facebookSetting = Model.Settings.FirstOrDefault(f => f.Key == "Facebook" && !f.IsDeleted);
+    var twitterSetting = Model.Settings.FirstOrDefault(t => t.Key == "Twitter" && !t.IsDeleted);
+    var linkedinSetting = Model.Settings.FirstOrDefault(ln => ln.Key == "Linkedin" && !ln.IsDeleted);
+    var instagramSetting = Model.Settings.FirstOrDefault(i => i.Key == "Instagram" && !i.IsDeleted);
+    var titleSetting = Model.Settings.FirstOrDefault(tl => tl.Key == "SiteTitle" && !tl.IsDeleted);
+}
+
+
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <!-- Mirrored from demo.hasthemes.com/juan-preview-v1/juan/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Mar 2021 22:36:22 GMT -->
 <head>
@@ -10,7 +25,7 @@
     <!--=== Favicon ===-->
     <link rel="shortcut icon"
           href="~/assets/img/favicon.ico"
-          type="image/x-icon" />
+          type="image/x-icon"/>
     <!--=== All Plugins CSS ===-->
     <link href="~/assets/css/plugins.css" rel="stylesheet" />
     <!--=== All Vendor CSS ===-->
@@ -37,7 +52,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="welcome-message">
-                                <p>Welcome to Juan online store</p>
+                                <p>@(titleSetting.Value)</p>
                             </div>
                         </div>
                         <div class="col-lg-6 text-right">
@@ -84,7 +99,7 @@
                         <div class="col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="~/assets/img/logo/logo.png" alt="" />
+                                    <img src="~/assets/img/logo/@(logoSetting.Value)" alt="" />
                                 </a>
                             </div>
                         </div>
@@ -590,16 +605,15 @@
                             <div class="widget-body">
                                 <ul class="location-wrap">
                                     <li>
-                                        <i class="ion-ios-location-outline"></i>184 Main Rd E, St
-                                        Albans VIC 3021, Australia
+                                        <i class="ion-ios-location-outline"></i>@(addressSetting.Value)
                                     </li>
                                     <li>
                                         <i class="ion-ios-email-outline"></i>Mail Us:
-                                        <a href="mailto:yourmail@gmail.com">yourmail@gmail.com</a>
+                                        <a href="mailto:yourmail@gmail.com">@(emailSetting.Value)</a>
                                     </li>
                                     <li>
                                         <i class="ion-ios-telephone-outline"></i>Phone:
-                                        <a href="%2b0025425456554">+ 00 254 254565</a>
+                                        <a href="%2b0025425456554">@(phoneSetting.Value)</a>
                                     </li>
                                 </ul>
                             </div>
@@ -675,10 +689,10 @@
                     </div>
                     <div class="col-md-6 order-1 order-md-2">
                         <div class="footer-social-link text-center text-md-right">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="@(facebookSetting.Value)" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="@(twitterSetting.Value)" target="_blank"<i class="fa fa-twitter"></i></a>
+                            <a href="@(linkedinSetting.Value)" target="_blank"<i class="fa fa-linkedin"></i></a>
+                            <a href="@(instagramSetting.Value)" target="_blank"<i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
