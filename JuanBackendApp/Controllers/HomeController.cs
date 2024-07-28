@@ -16,8 +16,9 @@ namespace JuanBackendApp.Controllers
         public async Task<IActionResult> Index()
         {
             HomeVM homeVm = new();
-            homeVm.Sliders = await _juanAppDbContext.Sliders.Where(p=>!p.IsDeleted).ToListAsync();
-            homeVm.Settings = await _juanAppDbContext.Settings.Where(p => !p.IsDeleted).ToListAsync();
+            homeVm.Sliders = await _juanAppDbContext.Sliders.Where(sl => !sl.IsDeleted).ToListAsync();
+            homeVm.Settings = await _juanAppDbContext.Settings.Where(s => !s.IsDeleted).ToListAsync();
+            homeVm.Products = await _juanAppDbContext.Products.Where(p => !p.IsDeleted).ToArrayAsync();
             return View(homeVm);
         }
     }

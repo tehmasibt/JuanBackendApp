@@ -6,5 +6,6 @@ namespace JuanBackendApp.ViewModel
     {
         public IEnumerable<Slider> Sliders { get; set; }
         public IEnumerable<Setting> Settings { get; set; }
+        public IEnumerable<Product> Products { get; set; }
     }
 }

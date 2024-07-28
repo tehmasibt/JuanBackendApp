@@ -6,7 +6,6 @@ namespace JuanBackendApp.App_Data
 {
     public class JuanAppDbContext : DbContext
     {
-
         public JuanAppDbContext(DbContextOptions options) : base(options)
         {
         }
