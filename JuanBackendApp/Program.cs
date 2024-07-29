@@ -1,4 +1,6 @@
 using JuanBackendApp.App_Data;
+using JuanBackendApp.Interfaces;
+using JuanBackendApp.LayoutServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,7 @@ builder.Services.AddDbContext<JuanAppDbContext>(options =>
 {
     options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<ILayoutService, LayoutService>();
 
 var app = builder.Build();
 

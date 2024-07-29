@@ -17,8 +17,7 @@ namespace JuanBackendApp.Controllers
         {
             HomeVM homeVm = new();
             homeVm.Sliders = await _juanAppDbContext.Sliders.Where(sl => !sl.IsDeleted).ToListAsync();
-            homeVm.Settings = await _juanAppDbContext.Settings.Where(s => !s.IsDeleted).ToListAsync();
-            homeVm.Products = await _juanAppDbContext.Products.Where(p => !p.IsDeleted).ToArrayAsync();
+            homeVm.Products = await _juanAppDbContext.Products.Where(p => !p.IsDeleted).ToListAsync();
             return View(homeVm);
         }
     }

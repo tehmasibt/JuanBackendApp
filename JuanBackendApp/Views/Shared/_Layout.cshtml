@@ -1,15 +1,7 @@
-﻿@model HomeVM
+﻿@inject ILayoutService layoutService
 
 @{
-    var logoSetting = Model.Settings.FirstOrDefault(s => s.Key == "Logo" && !s.IsDeleted);
-    var addressSetting = Model.Settings.FirstOrDefault(a => a.Key == "Address" && !a.IsDeleted);
-    var emailSetting = Model.Settings.FirstOrDefault(e => e.Key == "Email" && !e.IsDeleted);
-    var phoneSetting = Model.Settings.FirstOrDefault(p => p.Key == "Phone" && !p.IsDeleted);
-    var facebookSetting = Model.Settings.FirstOrDefault(f => f.Key == "Facebook" && !f.IsDeleted);
-    var twitterSetting = Model.Settings.FirstOrDefault(t => t.Key == "Twitter" && !t.IsDeleted);
-    var linkedinSetting = Model.Settings.FirstOrDefault(ln => ln.Key == "Linkedin" && !ln.IsDeleted);
-    var instagramSetting = Model.Settings.FirstOrDefault(i => i.Key == "Instagram" && !i.IsDeleted);
-    var titleSetting = Model.Settings.FirstOrDefault(tl => tl.Key == "SiteTitle" && !tl.IsDeleted);
+    var settings = layoutService.GetSettings();
 }
 
 
@@ -52,7 +44,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="welcome-message">
-                                <p>@(titleSetting.Value)</p>
+                                <p>@settings.FirstOrDefault(k => k.Key == "SiteTitle").Value</p>
                             </div>
                         </div>
                         <div class="col-lg-6 text-right">
@@ -99,7 +91,7 @@
                         <div class="col-lg-2">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="~/assets/img/logo/@(logoSetting.Value)" alt="" />
+                                    <img src="~/assets/img/logo/@settings.FirstOrDefault(k=>k.Key=="Logo").Value" alt="" />
                                 </a>
                             </div>
                         </div>
@@ -606,15 +598,15 @@
                             <div class="widget-body">
                                 <ul class="location-wrap">
                                     <li>
-                                        <i class="ion-ios-location-outline"></i>@(addressSetting.Value)
+                                        <i class="ion-ios-location-outline"></i>@settings.FirstOrDefault(p => p.Key == "Address").Value
                                     </li>
                                     <li>
-                                        <i class="ion-ios-email-outline"></i>Mail Us:
-                                        <a href="mailto:yourmail@gmail.com">@(emailSetting.Value)</a>
+                                        <i class="ion-ios-email-outline"></i>Mail Us: 
+                                        <a href="mailto:yourmail@gmail.com">@settings.FirstOrDefault(p => p.Key == "Email").Value</a>
                                     </li>
                                     <li>
-                                        <i class="ion-ios-telephone-outline"></i>Phone:
-                                        <a href="%2b0025425456554">@(phoneSetting.Value)</a>
+                                        <i class="ion-ios-telephone-outline"></i>Phone: 
+                                        <a href="%2b0025425456554">@settings.FirstOrDefault(p => p.Key == "Phone").Value</a>
                                     </li>
                                 </ul>
                             </div>
@@ -683,17 +675,16 @@
                     <div class="col-md-6 order-2 order-md-1">
                         <div class="copyright-text text-center text-md-left">
                             <p>
-                                Copyright 2019 <a href="index.html">Juan</a>. All Rights
-                                Reserved
+                                @settings["FooterText"]
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6 order-1 order-md-2">
                         <div class="footer-social-link text-center text-md-right">
-                            <a href="@(facebookSetting.Value)" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="@(twitterSetting.Value)" target="_blank"<i class="fa fa-twitter"></i></a>
-                            <a href="@(linkedinSetting.Value)" target="_blank"<i class="fa fa-linkedin"></i></a>
-                            <a href="@(instagramSetting.Value)" target="_blank"<i class="fa fa-instagram"></i></a>
+                            <a href="@settings["Facebook"]" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="@settings["Twitter"]" target="_blank"<i class="fa fa-twitter"></i></a>
+                            <a href="@settings["Linkedin"]" target="_blank"<i class="fa fa-linkedin"></i></a>
+                            <a href="@settings["Instagram"]" target="_blank"<i class="fa fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
