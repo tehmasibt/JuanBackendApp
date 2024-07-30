@@ -3,8 +3,6 @@
 @{
     var settings = layoutService.GetSettings();
 }
-
-
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <!-- Mirrored from demo.hasthemes.com/juan-preview-v1/juan/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 07 Mar 2021 22:36:22 GMT -->
@@ -90,7 +88,7 @@
                         <!-- start logo area -->
                         <div class="col-lg-2">
                             <div class="logo">
-                                <a href="index.html">
+                                <a asp-controller="home" asp-action="index">
                                     <img src="~/assets/img/logo/@settings.FirstOrDefault(k=>k.Key=="Logo").Value" alt="" />
                                 </a>
                             </div>
@@ -266,7 +264,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact-us.html">Contact us</a></li>
+                                            <li><a asp-controller="contact" asp-action="index">Contact us</a></li>
                                         </ul>
                                     </nav>
                                     <!-- main menu navbar end -->
@@ -702,7 +700,10 @@
             <div class="container">
                 <div class="offcanvas-search-box">
                     <form class="d-flex bdr-bottom w-100">
-                        <input type="text" placeholder="Search entire storage here..." />
+                        <input id="searchInput" type="text" placeholder="Search entire storage here..." />
+                        <ul id="searchList">
+
+                        </ul>
                         <button class="search-btn">
                             <i class="ion-ios-search-strong"></i>search
                         </button>

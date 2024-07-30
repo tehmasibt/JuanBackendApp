@@ -18,6 +18,6 @@ namespace JuanBackendApp.App_Data
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
-        
+       
     }
 }

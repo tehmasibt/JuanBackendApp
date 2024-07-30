@@ -1,4 +1,6 @@
-﻿namespace JuanBackendApp.Interfaces
+﻿using JuanBackendApp.Models;
+
+namespace JuanBackendApp.Interfaces
 {
     public interface ILayoutService
     {

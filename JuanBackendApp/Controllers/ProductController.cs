@@ -6,10 +6,6 @@ namespace JuanBackendApp.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
         private readonly JuanAppDbContext _juanAppDbContext;
         public ProductController(JuanAppDbContext juanAppDbContext)
         {
@@ -25,6 +21,18 @@ namespace JuanBackendApp.Controllers
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (product == null) return NotFound();
             return PartialView("_ModalPartial",product);
+        }
+        public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult SearchProduct(string search)
+        {
+            var product = _juanAppDbContext.Products
+                .AsNoTracking()
+                .Where(p => !p.IsDeleted && p.Name.ToLower().Contains(search.ToLower()))
+                .ToList();
+            return PartialView("_SearchPartial", product);
         }
     }
 }

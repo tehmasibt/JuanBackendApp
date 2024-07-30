@@ -1,7 +1,8 @@
-﻿
+﻿@inject ILayoutService layoutService
 
-
-<h1>Welcome to Contact page...</h1>
+@{
+    var settings = layoutService.GetSettings();
+}
 
 <div class="breadcrumb-area bg-img" data-bg="~/assets/img/banner/breadcrumb-banner.jpg">
     <div class="container">
@@ -11,7 +12,7 @@
                     <nav aria-label="breadcrumb">
                         <h1 class="breadcrumb-title">Contact Us</h1>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
                         </ul>
                     </nav>
@@ -60,19 +61,15 @@
             <div class="col-lg-6">
                 <div class="contact-info pt-0">
                     <h2 class="contact-title">contact us</h2>
-                    <p>
-                        Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum
-                        est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum
-                        formas human.
-                    </p>
+                    <p>@settings.FirstOrDefault(a => a.Key == "ContactTitle").Value</p>
                     <ul>
-                        <li><i class="fa fa-fax"></i> Address : No 40 Baria Sreet 133/2 NewYork City</li>
-                        <li><i class="fa fa-phone"></i> info@yourdomain.com</li>
-                        <li><i class="fa fa-envelope-o"></i> +88013245657</li>
+                        <li><i class="fa fa-fax"></i> Address : @settings["ContactAddress"]</li>
+                        <li><i class="fa fa-phone"></i>@settings["ContactPhone"]</li>
+                        <li><i class="fa fa-envelope-o"></i> @settings["Envelope"]</li>
                     </ul>
                     <div class="working-time">
                         <h3>Working Hours</h3>
-                        <p class="pb-0"><span>Monday – Saturday:</span>08AM – 22PM</p>
+                        <p class="pb-0">@settings["WorkDate"]</p>
                     </div>
                 </div>
             </div>

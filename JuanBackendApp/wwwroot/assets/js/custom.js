@@ -37,5 +37,20 @@
 					$button.parent().find('input').val(newVal);
 				});
             })
-    })
+	})
+
+
+	//Search
+	$(document).on("keyup", "#searchInput", function () {
+		$("#searchList").html("")
+		let searchValue = $(this).val();
+		axios.get("/product/SearchProduct?search="+searchValue)
+			.then(function (datas) {
+				$("#searchList").html(datas.data)
+			})
+	})
 })
+
+
+
+
