@@ -13,6 +13,12 @@ builder.Services.AddDbContext<JuanAppDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<ILayoutService, LayoutService>();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout=TimeSpan.FromSeconds(10);
+});
+builder.Services.AddHttpContextAccessor();
+
 
 var app = builder.Build();
 
@@ -21,6 +27,8 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+app.UseSession();
+
 app.UseStaticFiles();
 
 app.UseRouting();

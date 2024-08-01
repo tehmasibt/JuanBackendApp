@@ -27,12 +27,32 @@ namespace JuanBackendApp.Controllers
             return View();
         }
         public IActionResult SearchProduct(string search)
-        {
+       {
             var product = _juanAppDbContext.Products
                 .AsNoTracking()
                 .Where(p => !p.IsDeleted && p.Name.ToLower().Contains(search.ToLower()))
                 .ToList();
             return PartialView("_SearchPartial", product);
+        }
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null) return BadRequest();
+            var product = await _juanAppDbContext.Products
+                .AsNoTracking()
+                .Where(p => !p.IsDeleted)
+                .Include(p => p.ProductImages)
+                .Include(t => t.ProductColors)
+                .ThenInclude(pc => pc.Color)
+                .FirstOrDefaultAsync(p=>p.Id==id);
+            if (product == null) return NotFound();
+            var products = await _juanAppDbContext.Products
+                .AsNoTracking()
+                .Where(p => !p.IsDeleted && p.Id != product.Id)
+                .Include(p => p.ProductImages)
+                .Take(5)
+                .ToListAsync();
+            ViewBag.Products = products;
+            return View(product);
         }
     }
 }

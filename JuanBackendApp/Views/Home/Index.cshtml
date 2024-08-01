@@ -98,13 +98,13 @@
                     {
                         <div class="product-item mb-50">
                             <div class="product-thumb">
-                                <a href="product-details.html">
+                                <a asp-controller="product" asp-action="detail" asp-route-id="@product.Id">
                                     <img src="~/assets/img/product/@product.Image" alt="" />
                                 </a>
                             </div>
                             <div class="product-content">
                                 <h5 class="product-name">
-                                    <a href="product-details.html">@product.Name</a>
+                                    <a asp-controller="product" asp-action="detail" asp-route-id="@product.Id">@product.Name</a>
                                 </h5>
                                 <div class="price-box">
                                     @if (product.DisCountPrice > 0)
@@ -121,10 +121,10 @@
                                     <a href="#" data-toggle="tooltip" title="Wishlist">
                                         <i class="ion-android-favorite-outline"></i>
                                     </a>
-                                    <a href="#" data-toggle="tooltip" title="Add To Cart">
+                                    <a class="addToBasket" data-id="@product.Id" data-toggle="tooltip" title="Add To Cart">
                                         <i class="ion-bag"></i>
                                     </a>
-                                    <a class="productModal" data-toggle="modal" data-target="#quick_view" asp-controller="product" asp-action="Modal" asp-route-id="@product.Id">
+                                    <a class="productModal" data-toggle="modal" data-target="#quick_view">
                                         <span data-toggle="tooltip" title="Quick View">
                                             <i class="ion-ios-eye-outline"></i>
                                         </span>
@@ -231,12 +231,11 @@
                                         <a href="#" data-toggle="tooltip" title="Wishlist">
                                             <i class="ion-android-favorite-outline"></i>
                                         </a>
-                                        <a href="#" data-toggle="tooltip" title="Add To Cart">
+                                        <a class="addToBasket" data-id="@item.Id" data-toggle="tooltip" title="Add To Cart">
                                             <i class="ion-bag"></i>
                                         </a>
-                                        <a class="productModal" asp-controller="product" asp-action="Modal" asp-route-id="@item.Id"
-                                           data-toggle="modal"
-                                           data-target="#quick_view">
+                                        <a class="productModal" data-toggle="modal" data-target="#quick_view">
+                                            @* asp-controller="product" asp-action="detail" asp-route-id="@item.Id" *@
                                             <span data-toggle="tooltip" title="Quick View">
                                                 <i class="ion-ios-eye-outline"></i>
                                             </span>

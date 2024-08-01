@@ -1,5 +1,18 @@
 ﻿$(document).ready(function () {
+	//AddBasket
+	$(".addToBasket").click(function (ev) {
+		ev.preventDefault();
+		var id = $(this).data("id");
+		console.log(id);
+		axios.get("/basket/addBasket?id="+id)
+			.then(function (datas) {
+				console.log(datas)
+			})
+	})
 
+
+	
+	//Modal
     $(".productModal").click(function (ev) {
         ev.preventDefault();
         let url=$(this).attr("href");

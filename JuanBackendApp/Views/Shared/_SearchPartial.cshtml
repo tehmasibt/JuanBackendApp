@@ -3,7 +3,7 @@
 @foreach (var item in Model)
 {
     <li>
-        <a asp-controller="detail" asp-action="index" asp-route-id="@item.Id">
+        <a asp-controller="product" asp-action="detail" asp-route-id="@item.Id">
             <img width="100" height="100" src="~/assets/img/product/@item.Image" />
         </a>
     </li>
